@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A web interface for MQTT over Websockets">
+    <meta name="author" content="Jackson Azevedo">
+
+    <title>Monitor de dados</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.2/mqttws31.js"></script>
+
+    <script type="text/javascript" src="js/index.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2">
+        <a class="navbar-brand" href="#">Monitor de dados</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Configurações</a>
+            </li>
+           
+          </ul>
+        </div>
+      </nav>
+    <div class="container-fluid">
+        <div id="status" class="alert">
+            <small>Loading...</small>
+        </div>
+        <div class="card mb-2">
+            <div class="row">
+                <div class="col-6 col-md-4">
+                    <div class="card-body">
+                        <div class="card-title">
+                            Gás/Fumaça
+                        </div>
+                        <span id="label1" class="badge w-100">Unknown</span>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md-4">
+                    <div class="card-body">
+                        <div class="card-title">
+                            Umidade
+                        </div>
+                        <span id="lab2TempLabel" class="badge w-100">Unknown</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-md-7 mb-2">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            Temperatura
+                            <span id="lab1TempLabel" class="text-muted float-right badge">Unknown</span>
+                        </div>
+                    </div>
+                    <canvas id="tempChart" width="300" height="120"></canvas>
+                </div>
+            </div>
+            <div class="col-12 col-md-5">
+                <table class="table table-bordered table-sm table-striped mt-2">                    
+                    <tbody>
+                        <tr>
+                            <th>Gás/Fumaça</th>
+                            <td><small id="value1">(no value received)</small></td>
+                        </tr>
+                        <tr>
+                            <th>Umidade</th>
+                            <td><small id="value3">(no value received)</small></td>
+                        </tr>
+                        <tr>
+                            <th>Temperatura</th>
+                            <td><small id="lab1TempSensor">(no value received)</small></td>
+                        </tr>
+                        <tr>
+                            <th>Last MQTT message</th>
+                            <td><small id="message">no message recieved</small></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <hr>
+        <footer class="text-center mt-10">
+            <small>
+                <a href="https://github.com/jacksonazevedo">Jackson Azevedo</a>
+            </small>
+        </footer>
+    </div>
+</body>
+</html>
